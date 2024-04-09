@@ -1,19 +1,25 @@
-import Header from './components/Header.tsx';
-import Shop from './components/Shop.tsx';
-import Product from './components/Product.tsx';
-import { DUMMY_PRODUCTS } from './dummy-products.ts';
+import { Provider } from "react-redux";
+
+import Header from "./components/Header.tsx";
+import Shop from "./components/Shop.tsx";
+import Product from "./components/Product.tsx";
+import { DUMMY_PRODUCTS } from "./dummy-products.ts";
+import { store } from "./store/store.ts";
 
 function App() {
+  // Providerにstoreを指定する
   return (
     <>
-      <Header />
-      <Shop>
-        {DUMMY_PRODUCTS.map((product) => (
-          <li key={product.id}>
-            <Product {...product} />
-          </li>
-        ))}
-      </Shop>
+      <Provider store={store}>
+        <Header />
+        <Shop>
+          {DUMMY_PRODUCTS.map((product) => (
+            <li key={product.id}>
+              <Product {...product} />
+            </li>
+          ))}
+        </Shop>
+      </Provider>
     </>
   );
 }
